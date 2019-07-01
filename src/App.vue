@@ -3,7 +3,9 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <nav>
-      <router-link to="/">Post list</router-link>
+      <router-link to="/">Post list...</router-link>
+      <router-link to="/users">Users list</router-link>
+      
     </nav>
     <router-view />
   </div>

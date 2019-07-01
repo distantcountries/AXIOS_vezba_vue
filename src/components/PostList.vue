@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ date }}
+        {{ getFormatedDate(date) }}
         <br>
         <input type="text" v-model="term" placeholder="Search..."/>
         <ul>

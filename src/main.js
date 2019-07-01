@@ -5,6 +5,10 @@ import App from './App.vue'
 Vue.use(VueRouter)
 
 import PostList from '@/components/PostList'
+import UsersList from '@/components/UsersList'
+import SingleUser from '@/components/SingleUser'
+
+
 
 const routes = [
 
@@ -12,9 +16,14 @@ const routes = [
     path: '/',
     component:PostList
   },
-
-
-]
+  {
+    path: '/users',
+    component:UsersList,
+  },
+  { 
+    path : '/users/:id', 
+  component: SingleUser 
+}]
 
 const router = new VueRouter({
   routes: routes,

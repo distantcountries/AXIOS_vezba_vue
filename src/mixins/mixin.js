@@ -54,5 +54,11 @@ export const mixinDate = {
         }
       },
 
+      methods: {
+          getFormatedDate(date) {
+              return new Intl.DateTimeFormat().format(date);
+          }
+      }
+
 }
 
