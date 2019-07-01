@@ -27,32 +27,67 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+
+
+    <div>{{ user }}</div>
+
   </div>
+
 </template>
 
 <script>
+
+  // import axios from 'axios'; //dodato
+
+  import { UserService, userService } from '../services/UserService'
+  import { mixin1, mixin2, mixin3 } from '../mixins/mixin'
+
+
 export default {
   name: 'HelloWorld',
+  mixins: [mixin1, mixin2, mixin3],
+
   props: {
     msg: String
-  }
-}
-</script>
+  },
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+  data(){
+    return {
+        errors: [], //dodato
+        posts: []
+    }
+  },
+
+  // created() {
+  //   this.user = 'Dragana'
+  //   this.getUserName();
+  //   // axios.get('https://jsonplaceholder.typicode.com/posts')
+  //   // .then(response => {
+  //   //   console.log(response);
+  //   //   this.posts = response.data;
+  //   // }).catch(e => { 
+  //   //   this.errors.push(e)
+  //   // })
+  //   //   console.log(this.posts, '----ovo su postovi----');
+
+  //   userService.getUsers()
+  //   .then(response => {
+  //     console.log(response);
+  //   })
+  //   .catch( e => {
+  //     console.log(e);
+  //   }),
+
+
+  //   userService.getUserPosts()
+  //   .then(response => {
+  //     console.log(response);
+  //   })
+  //   .catch( e => {
+  //     console.log(e);
+  //   })
+  // }
+
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+
+</script>
