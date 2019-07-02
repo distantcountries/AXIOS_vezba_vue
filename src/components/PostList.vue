@@ -1,63 +1,87 @@
 <template>
-    <div>
-        {{ getFormatedDate(date) }}
+  <div>
+    <p class="dateFormat">{{ getFormatedDate(date) }}</p>
+    <input @input="search" placeholder="Search posts ...." class="inputSearch"/>
+    <ul class="postList">
+      <li v-for="(post, index) in filteredPosts" :key="index">
+        <span style="font-weight:bold; color:#006D54;">{{ post.title }}</span>
         <br>
-        <input type="text" v-model="term" placeholder="Search..."/>
-        <ul>
-            <li v-for="(post, index) in filteredPosts" :key="index">
-
-                <span style="font-weight:bold">{{ post.title }}</span>
-                <br>
-                {{ post.body }} <br><br>
+          {{ post.body }} <br><br>
                 
-            </li>
-        </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-  import { userService } from '../services/UserService'
-  import { mixinDate } from '../mixins/mixin'
-  
+import { postService } from '../services/PostService'
+import { mixinDate } from '../mixins/mixin'
   
 export default {
     mixins: [ mixinDate ],
 
   data(){
     return {
-        errors: [],
-        posts: [], 
-        term:'',
-
-
-        post:{
-            title:'', 
-            body:''
-        }
+      errors: [],
+      posts: [], 
+      searchTerm: '',
     }
   },
 
-    computed: {
+  computed: {
           
-        filteredPosts() {
-            return this.posts.filter(post => {
-                return post.title.toLowerCase().includes(this.term.toLowerCase())
-            })
-        },
+    filteredPosts() {
+      return this.posts.filter(post => {
+        return post.title.toLowerCase().includes(this.searchTerm.toLowerCase())});
     },
 
+  },
 
-  created() {
-   userService.getUserPosts()
-    .then(response => {
-    //   console.log(response);
-    this.posts = response.data
-    })
-    .catch( e => {
-      console.log(e);
-    })
-  }
+  methods: {
+
+    search($event) {
+      console.log($event);
+        if ($event.inputType === "deleteContentBackward") {
+            this.searchTerm = this.searchTerm.substring(0, this.searchTerm.length - 1)
+            console.log(this.searchTerm);
+            return ;
+        }
+        this.searchTerm += $event.data;
+        console.log(this.searchTerm);   
+      }
+    },
+
+    created() {
+      postService.getPosts()
+        .then(response => {
+        this.posts = response.data
+        })
+        .catch( e => {
+          console.log(e);
+        })
+    },
 }
 </script>
+
+<style>
+
+  .postList {
+    text-align: justify;
+    text-transform: capitalize;
+  }
+
+  .inputSearch {
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    background-color: lightcyan;
+  }
+
+  .dateFormat {
+    font-style: italic;
+    font-weight: bold;
+  }
+
+
+</style>
 
 

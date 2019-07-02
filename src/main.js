@@ -12,27 +12,29 @@ import SingleUser from '@/components/SingleUser'
 
 const routes = [
 
-  {
-    path: '/',
-    component:PostList
-  },
-  {
-    path: '/users',
-    component:UsersList,
-  },
-  { 
-    path : '/users/:id', 
-  component: SingleUser 
-}]
+    {
+        path: '/',
+        component: PostList
+    },
+    {
+        path: '/users',
+        component: UsersList,
+        children: [{
+            path: ':id',
+            component: SingleUser
+        }]
+    },
+]
 
 const router = new VueRouter({
-  routes: routes,
-  mode: 'history',
+    routes: routes,
+    mode: 'history',
+    linkActiveClass: 'activeLink'
 })
 
 Vue.config.productionTip = false
 
 new Vue({
-  router: router,
-  render: h => h(App),
+    router: router,
+    render: h => h(App),
 }).$mount('#app')

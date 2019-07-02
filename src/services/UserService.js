@@ -9,11 +9,12 @@ export default class UserService {
         return axios.get('users');
     }
 
-    getUserPosts() {
-        return axios.get('posts'); 
+    findUser() {
+        // return axios.get(users.find(user => user.id == id));
+        // return users.find(user => user.id == id);
+        return axios.get('users.id');
     }
 
-    
 }
 
 export const userService = new UserService()

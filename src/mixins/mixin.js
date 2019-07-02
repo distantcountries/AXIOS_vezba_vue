@@ -1,7 +1,7 @@
-export const mixin1 =  {
+export const mixin1 = {
     data() {
         return {
-            user:''
+            user: ''
         }
     },
     created() {
@@ -19,7 +19,7 @@ export const mixin1 =  {
 export const mixin2 = {
     data() {
         return {
-            user:''
+            user: ''
         }
     },
     created() {
@@ -31,7 +31,7 @@ export const mixin2 = {
 export const mixin3 = {
     data() {
         return {
-            user:''
+            user: ''
         }
     },
     created() {
@@ -50,15 +50,14 @@ export const mixinDate = {
 
     data() {
         return {
-          date: new Date(),
+            date: new Date(),
         }
-      },
+    },
 
-      methods: {
-          getFormatedDate(date) {
-              return new Intl.DateTimeFormat().format(date);
-          }
-      }
+    methods: {
+        getFormatedDate(date) {
+            return new Intl.DateTimeFormat().format(date);
+        }
+    }
 
 }
-
